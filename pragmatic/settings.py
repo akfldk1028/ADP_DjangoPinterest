@@ -14,6 +14,10 @@ from pathlib import Path
 import environ
 import os
 
+from django.contrib import staticfiles
+
+# from django.contrib import staticfiles
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -132,6 +136,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#css 강의
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'pragmatic', 'static')
+]
+
+
+# STATIC_ROOT = 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

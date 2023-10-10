@@ -1,0 +1,24 @@
+.pragmatic_footer_logo {
+    font-family: 'Diphylleia', serif;
+    color: #797979;
+    font-size: 2rem;
+    /*margin-top: 10px;*/
+}
+.pragmatic_footer_button{
+    font-size:  .6rem;
+}
+
+.pragmatic_footer{
+    text-align: center;
+    margin-top: .2rem;
+    color: #2f47ff;
+}
+
+.pragmatic_header{
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.pragmatic_logo{
+
+}
