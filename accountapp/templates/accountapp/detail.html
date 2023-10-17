@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+        <h2>
+            {% if target_user.profile %}
+                <img src="{{ target_user.profile.image.url }}" alt=""
+                     style="height: 12rem; width: 12rem; border-radius: 15rem; margin-bottom: 1rem ">
+
+                <h2>
+                {{ target_user }}
+                  {{ user }}
+
+                    {{ target_user.profile.nickname }}
+                    {% if target_user == user %}
+                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            edit
+                        </a>
+                    {% endif %}
+                </h2>
+            {% else %}
+                {% if target_user == user %}
+                    <a href="{% url 'profileapp:create' %}">
+                        <p>
+                            Create Profile
+                        </p>
+
+                    </a>
+                    <h5 style="margin-bottom: 3rem;">
+                        {{ target_user.profile.message }}
+
+                    </h5>
+                {% else %}
+                    <h2>닉네임 비설정</h2>
+
+                {% endif %}
+            {% endif %}
+
+
+
+
+            {% if target_user == user %}
+                <a href="{% url 'accountapp:update' pk=user.pk %}">
+                    <p>
+                        change Info
+                    </p>
+                </a>
+                <a href="{% url 'accountapp:delete' pk=user.pk %}">
+                    <p>
+                        Quit
+                    </p>
+                </a>
+            {% endif %}
+    </div>
+{% endblock %}

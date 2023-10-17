@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .container div {
+            width: 250px;
+            background-color: #6f94c6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+        }
+
+        .container img {
+            width: 100%;
+            border-radius: 1rem;
+        }
+    </style>
+
+
+    <div class="container">
+        <div class="item1">
+            <img src="https://picsum.photos/200/300?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/400?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/500?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/100?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/420?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/340?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/310?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/240?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/350?grayscale" alt="">
+        </div>
+        <div class="item1">
+            <img src="https://picsum.photos/200/340?grayscale" alt="">
+        </div>
+    </div>
+
+    <script src="{% static 'js/magicgrid.js' %}">
+
+
+    </script>
+
+{% endblock %}
