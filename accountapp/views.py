@@ -5,35 +5,37 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+
+from articleapp.models import Article
 
 has_ownership = [account_ownership_required, login_required]
 # Create your views here.
 
 
-@login_required
-def hello_world(request):
-    # if request.user.is_authenticated:
-        if request.method == 'POST':
-
-            temp = request.POST.get('hello_world_input')
-
-            new_hello_world = HelloWorld()
-            new_hello_world.text = temp
-            new_hello_world.save()
-
-            return HttpResponseRedirect(reverse('accountapp:hello_world'))
-        else:
-            # 모든데이터 긁어오기
-            hello_world_list = HelloWorld.objects.all()
-            return render(request, 'accountapp/helloworld.html', context={'hello_world_list': hello_world_list})
-
-    # else:
-    #     return HttpResponseRedirect(reverse("accountapp:login"))
+# @login_required
+# def hello_world(request):
+#     # if request.user.is_authenticated:
+#         if request.method == 'POST':
+#
+#             temp = request.POST.get('hello_world_input')
+#
+#             new_hello_world = HelloWorld()
+#             new_hello_world.text = temp
+#             new_hello_world.save()
+#
+#             return HttpResponseRedirect(reverse('accountapp:hello_world'))
+#         else:
+#             # 모든데이터 긁어오기
+#             hello_world_list = HelloWorld.objects.all()
+#             return render(request, 'accountapp/helloworld.html', context={'hello_world_list': hello_world_list})
+#
+#     # else:
+#     #     return HttpResponseRedirect(reverse("accountapp:login"))
 
 class AccountCreateView(CreateView):
     model = User
@@ -41,14 +43,21 @@ class AccountCreateView(CreateView):
     # 계정을 만들때 성공하면 redirect하는 html
     # reverse vs reverse_lazy  차이 : 불러오는 방식의 차이가 있다. reverse를 class에서 그대로 사용이 불가하기때문에
     # reverse function // reverse_lazy : class
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/create.html'
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+    paginate_by = 25
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
+
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')

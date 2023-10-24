@@ -44,7 +44,7 @@ DEBUG = env('DEBUG')
 
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -59,7 +59,10 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accountapp',
     'profileapp',
-    'articleapp'
+    'articleapp',
+    'commentapp',
+    'projectapp',
+    'subscribeapp'
 ]
 
 MIDDLEWARE = [
@@ -149,7 +152,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'pragmatic', 'static')
 ]
 
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 
