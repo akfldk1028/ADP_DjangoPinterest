@@ -2,9 +2,9 @@ FROM python:3.11.6
 
 WORKDIR /home/
 
-RUN git clone https://github.com/akfldk1028/ADP_DjangoPinterest.git
+RUN git clone https://github.com/akfldk1028/pragmatic.git
 
-WORKDIR /home/pragmatic
+WORKDIR /home/pragmatic/
 
 RUN pip install -r requirements.txt
 
