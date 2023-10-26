@@ -19,32 +19,9 @@ from django.urls import reverse_lazy
 
 # from django.contrib import staticfiles
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-
-# Set the project base directory
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-# Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
-
-
-
-ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,7 +57,7 @@ ROOT_URLCONF = 'pragmatic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, './templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,15 +73,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pragmatic.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -170,4 +139,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
