@@ -10,9 +10,9 @@ def read_secret(secret_name):
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True)
+    DEBUG=(bool, False)
 )
-
+# False
 
 # Set the project base directory
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,8 +36,8 @@ session_cookie_secure = True
 SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
+# DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 
