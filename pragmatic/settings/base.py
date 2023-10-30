@@ -16,7 +16,7 @@ import os
 
 from django.contrib import staticfiles
 from django.urls import reverse_lazy
-
+CSRF_TRUSTED_ORIGINS = ['http://anologydk.store/', 'https://anologydk.store' , 'https://www.anologydk.store']
 # from django.contrib import staticfiles
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

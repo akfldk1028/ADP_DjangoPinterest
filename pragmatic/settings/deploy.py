@@ -10,7 +10,7 @@ def read_secret(secret_name):
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 
@@ -23,6 +23,10 @@ env = environ.Env(
 environ.Env.read_env(
     env_file=os.path.join(BASE_DIR, '.env')
 )
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+session_cookie_secure = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,7 +36,7 @@ environ.Env.read_env(
 SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

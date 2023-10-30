@@ -4,7 +4,7 @@ from .base import *
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 
@@ -29,7 +29,9 @@ DEBUG = env('DEBUG')
 
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+session_cookie_secure = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
